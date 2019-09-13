@@ -18,3 +18,14 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/lists', 'ListController@index');
+Route::post('/lists', 'ListController@store');
+Route::patch('/lists', 'ListController@update');
+Route::delete('/lists', 'ListController@destroy');
+Route::get('/lists/{list}', 'ListController@show');
+
+Route::post('{list}/items', 'ListController@store');
+Route::patch('/items', 'ListController@update');
+Route::delete('/items', 'ListController@destroy');
+Route::post('/items/toggle', 'ListController@destroy');

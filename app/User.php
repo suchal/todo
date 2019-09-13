@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\TodoList;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -36,4 +37,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function lists(){
+        return $this->hasMany(TodoList::class, 'user_id', 'id');
+    }
 }

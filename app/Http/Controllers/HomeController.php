@@ -21,8 +21,11 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
+        if($request->has('all')){
+            return view('home_all');
+        }
         return view('home');
     }
 }
