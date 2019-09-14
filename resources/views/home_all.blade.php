@@ -13,15 +13,25 @@
             margin:0;padding:0;
             overflow: auto;
         }
-        .navbar-right{
-            margin-right: 20px;
+        .header{
+            display: flex;
+            padding: 0px 20px;
+            justify-content: space-between;
+        }
+        .header-title{
+            font-size: 22px;
+        }
+        .header .logout-btn{
+            background: transparent;
+            border: none;
+            color: #fff;
         }
         .bg-dark{
             background: #222831 !important;
         }
         .sidebar, .content{
             width: 100%;
-            padding-top: 50px;
+            padding-top: 15px;
             float: left;
             color: #eee;
         }
@@ -33,7 +43,6 @@
         }
         .content{
             width:100%;
-            padding-top: 50px;
             float:right;
             background-color: #3A4250;
         }
@@ -163,36 +172,14 @@
     </style>
 </head>
 <body>
-    <div class="head">
-        <nav class="navbar navbar-inverse bg-dark navbar-fixed-top">
-          {{-- <div class="container-fluid"> --}}
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">Suchal Todo</a>
-            </div>
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="navbar-text center">
-                              Monday, 13th January, 2019
-                    </li>
-                   <li class="dropdown center">
-                          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Suchal
-                          <span class="caret"></span></a>
-                          <ul class="dropdown-menu">
-                            <li><a href="#">Logout</a></li>
-                          </ul>
-                    </li>
-                </ul>
-            </div>
-          {{-- </div> --}}
-        </nav>
-    </div>
     <div class="row">
         <div class="sidebar bg-dark">
+            <div class="header">
+                <div class="header-title">Suchal Todo</div>
+                <div>
+                    <a href="logout" class="logout-btn" type="submit"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                </div>
+            </div>
             <div class="create-box">
                 <h4 class="center">Create New List</h4>
                 <div class="new-box">

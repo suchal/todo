@@ -11,15 +11,21 @@ class ItemController extends Controller
     public function index(TodoList $list, Request $request){
         \Gate::authorize('crud-owner', $list);
 
-        return $list->items();
+        return $list->items;
     }
-    public function store(TodoList $list, Request $request){
+    public function store(Request $request){
+        $this->validate($request, ['content'=>'required', 'list_id'=>'required']);
+        $list = TodoList::find($request->get('list_id'));
+        if(!$list){
+            return response()->json(['status'=>'error']);
+        }
         \Gate::authorize('crud-owner', $list);
         
-        return $list->items()->create([
+        $item = $list->items()->create([
             'user_id' => \Auth::user()->id,
             'content' => $request->get('content')
         ]);
+        return response()->json(['status'=>'success']);
     }
     public function update(TodoList $list, Request $request){
         \Gate::authorize('crud-owner', $list);

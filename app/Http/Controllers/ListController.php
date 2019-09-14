@@ -29,13 +29,15 @@ class ListController extends Controller
         return response()->json(['status'=>'success']);
     }
 
-    public function destroy(Request $request){
-        TodoList::where('id', $request->get('list_id'))->where('user_id', \Auth::user()->id)->delete();
-        return response()->json(['status'=>'success']);
+    public function destroy(TodoList $list, Request $request){
+        if($list->user_id == \Auth::user()->id){
+            $list->delete();
+        }
+        return response()->json(['status'=>'error']);
     }
 
     public function show(TodoList $list, Request $request){
         \Gate::authorize('crud-owner', $list);
-        return $list->items();
+        return $list->items;
     }
 }

@@ -18,5 +18,5 @@ mix.js('resources/js/app.js', 'public/js')
        'public/css/fontawesome.css'
    ], 'public/css/all.css')
    .scripts([
-        'public/js/bootstrap.css'
+        'public/js/bootstrap.js'
     ], 'public/js/all.js')
