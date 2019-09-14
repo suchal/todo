@@ -26,7 +26,11 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Gate::define('crud-owner', function ($user, $obj) {
-            return $user->id === $obj->user_id;
+            return $user->id == $obj->user_id;
+        });
+
+        Gate::define('viewable', function($user, $obj){
+            return ($user->id == $obj->user_id || $obj->viewers()->where('user_id', $user->id)->count());
         });
     }
 }

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Item extends Model
 {
-    public $fillable = ['user_id', 'list_id', 'content'];
+    public $fillable = ['user_id', 'list_id', 'content', 'is_done'];
 
     public function user(){
         return $this->belongsTo(User::class);

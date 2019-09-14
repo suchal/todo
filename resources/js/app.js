@@ -26,7 +26,10 @@ files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-
+ import VueSweetalert2 from 'vue-sweetalert2';
+ import 'sweetalert2/dist/sweetalert2.min.css';
+ Vue.use(VueSweetalert2);
+ 
 const app = new Vue({
     el: '#app',
 });

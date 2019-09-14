@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class ItemController extends Controller
 {
     public function index(TodoList $list, Request $request){
-        \Gate::authorize('crud-owner', $list);
+        \Gate::authorize('viewable', $list);
 
         return $list->items;
     }
@@ -19,7 +19,7 @@ class ItemController extends Controller
         if(!$list){
             return response()->json(['status'=>'error']);
         }
-        \Gate::authorize('crud-owner', $list);
+        \Gate::authorize('viewable', $list);
         
         $item = $list->items()->create([
             'user_id' => \Auth::user()->id,
@@ -28,7 +28,7 @@ class ItemController extends Controller
         return response()->json(['status'=>'success']);
     }
     public function update(TodoList $list, Request $request){
-        \Gate::authorize('crud-owner', $list);
+        \Gate::authorize('viewable', $list);
         $this->validate($request, ['item_id'=>'required', 'content'=>'required']);
         Item::where('id', $request->get('item_id'))->update([
             'content' => $request->get('content')
@@ -36,18 +36,18 @@ class ItemController extends Controller
         return response()->json(['status'=>'success']);
     }
 
-    public function toggle(TodoList $list, Request $request){
-        \Gate::authorize('crud-owner', $list);
-        $this->validate($request, ['item_id'=>'required']);
-        $item = Item::find($request->get('item_id'));
+    public function toggle(TodoList $list, Item $item, Request $request){
+        \Gate::authorize('viewable', $list);
+        \Log::info($item);
         $item->update([
             'is_done' => !$item->is_done
         ]);
         return response()->json(['status'=>'success']);
     }
-    public function destroy(TodoList $list, Request $request){
-        \Gate::authorize('crud-owner', $list);
-        Item::where('id', $request->get('item_id'))->delete();
+    
+    public function destroy(TodoList $list, Item $item, Request $request){
+        \Gate::authorize('viewable', $list);
+        $item->delete();
         return response()->json(['status'=>'success']);
     }
 }

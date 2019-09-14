@@ -19,9 +19,10 @@ Route::get('/lists', 'ListController@index');
 Route::post('/lists', 'ListController@store');
 Route::patch('/lists', 'ListController@update');
 Route::delete('/lists/{list}', 'ListController@destroy');
-Route::get('/lists/{list}', 'ListController@show');
+Route::post('/lists/{list}/share', 'ListController@share');
 
-Route::post('/items', 'ItemController@store');
-Route::patch('/items', 'ItemController@update');
-Route::delete('/items/{item}', 'ItemController@destroy');
-Route::post('/items/toggle', 'ItemController@destroy');
+Route::get('/lists/{list}', 'ItemController@index');
+Route::post('lists/{list}/items', 'ItemController@store');
+Route::patch('lists/{list}/items', 'ItemController@update');
+Route::delete('lists/{list}/items/{item}', 'ItemController@destroy');
+Route::post('lists/{list}/items/{item}/toggle', 'ItemController@toggle');

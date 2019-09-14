@@ -22,7 +22,8 @@
     export default {
         data(){
             return {
-                todos : []
+                todos : [],
+                selectedTodo: null
             }
         },
         mounted() {
@@ -41,6 +42,9 @@
                 axios.get('lists').then(function(response){
                         console.log(response);
                         obj.todos = response.data;
+                        if(obj.selectedTodo){
+                            obj.todoSelected(obj.selectedTodo)
+                        }
                     })
             },
             deleteTodo(id){
@@ -63,6 +67,11 @@
                     if(_todo.id == id)
                         todo = _todo
                 })
+                if(todo){
+                    this.selectedTodo = todo.id
+                }else{
+                    this.selectedTodo = false
+                }
                 this.$emit('todoSelected', todo)
             }
         }

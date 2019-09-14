@@ -20,4 +20,9 @@ class TodoList extends Model
         return $this->hasMany(Item::class, 'list_id', 'id');
     }
 
+    public function viewers(){
+        return $this->belongsToMany(User::class, 'list_user', 'list_id', 'user_id');
+    }
+
+
 }

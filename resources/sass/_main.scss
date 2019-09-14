@@ -6,6 +6,12 @@ body,html,.sidebar, .container-fluid,.content, .row, #app{
     margin:0;padding:0;
     overflow: auto;
 }
+.form-group{
+    margin-bottom: 10px;
+}
+input:focus{
+    outline: none;
+}
 .header{
     display: flex;
     padding: 0px 20px;
@@ -129,6 +135,9 @@ body,html,.sidebar, .container-fluid,.content, .row, #app{
     font-size: 15px;
     opacity: 0.6;
     color: #fff;
+}
+.editable-text-box button.share-btn{
+    width: 75px;
 }
 .editable-text-box:hover button{
     opacity: 0.9;

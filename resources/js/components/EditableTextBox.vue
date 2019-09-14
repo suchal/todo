@@ -25,7 +25,7 @@
             },
             makeEditable(event){
                 this.isDisabled = false;
-                this.$refs.input.focus()
+                this.$refs.input.$el.focus()
             },
             editItem(){
                 this.isDisabled = true;
