@@ -1,6 +1,9 @@
 <template>
     <div class="content" v-if="todo">
         <div class="todo-header">
+            <div class="menu_btn">
+                <button @click="showSidebar"><i class="fas fa-bars"></i></button>
+            </div>
             <div class="editable-text-box">
                 <input type="text" disabled="" :value="todo.name">
                 <div class="btn-box">
@@ -82,7 +85,11 @@
                             this.$swal('The user can now access this todo list.')
                         }
                     })
-                })
+                });
+            },
+            showSidebar(){
+                console.log('clicked hamburger');
+                this.$emit('showSidebar');
             }
         },
         props: ['todo'],

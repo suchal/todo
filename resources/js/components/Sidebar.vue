@@ -30,6 +30,13 @@
             console.log('Component mounted.')
             this.loadTodo()
         },
+        props: ['removeTodo'],
+        watch: {
+            removeTodo: function(newVal){
+                if(newVal)
+                    this.selectedTodo = null;
+            }
+        },
         methods: {
             onNewList(data){
                 let obj = this;

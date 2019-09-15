@@ -59,7 +59,7 @@
                     </form>
                     <h2></h2>
                     <h4 class="center">New Here?</h4>
-                    <div class="col-md-4 col-xs-offset-4 center">
+                    <div class="center">
                         <a class="btn btn-primary" href="{{ url('register') }}">Sign Up</a>
                     </div>
 

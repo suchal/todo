@@ -2,8 +2,8 @@
     <div @click="sendClick" class="editable-text-box" :dataId="id">
         <input ref="input" @focusout="editItem" type="text" :disabled="isDisabled" :value="val">
         <div class="btn-box">
-            <button @click="deleteItem"><i class="fas fa-minus-circle"></i></button>
-            <button @click="makeEditable"><i class="fas fa-edit"></i></button>
+            <button v-show="isDisabled" @click="deleteItem"><i class="fas fa-minus-circle"></i></button>
+            <button v-show="isDisabled" @click="makeEditable"><i class="fas fa-edit"></i></button>
         </div>
     </div>
 </template>
@@ -21,18 +21,29 @@
         },
         methods: {
             deleteItem(){
-                this.$emit('deleteEvent', this.id)
+                let obj = this;
+                this.$swal({
+                    text: "Are you sure you want to delete?",
+                    showCancelButton: true,
+                }).then((re)=>{
+                    console.log(re);
+                    if(re.value){
+                        obj.$emit('deleteEvent', this.id)
+                    }
+                })
             },
             makeEditable(event){
                 this.isDisabled = false;
-                this.$refs.input.$el.focus()
+                let inp = this.$refs.input;
+                setTimeout(()=>{inp.focus()}, 100)
             },
             editItem(){
                 this.isDisabled = true;
                 this.$emit('editEvent', this.id, this.$refs.input.value)
             },
-            sendClick(){
-                this.$emit('click', this.id)
+            sendClick(event){
+                if(!event.target.className.includes('fa'))
+                    this.$emit('click', this.id)
             }
         },
         props: ['val', 'id']

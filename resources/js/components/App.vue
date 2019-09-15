@@ -1,7 +1,7 @@
 <template>
     <div class="row">
-        <Sidebar @todoSelected="loadTodo"></Sidebar>
-        <Content :todo="todo"></Content>
+        <Sidebar v-show="!($mq == 'sm' && todo) " :removeTodo="!todo" @todoSelected="loadTodo"></Sidebar>
+        <Content v-show="!($mq == 'sm' && !todo) " @showSidebar="showSidebar" :todo="todo"></Content>
     </div>
 </template>
 
@@ -10,7 +10,8 @@
     export default {
         data(){
             return {
-                todo: null
+                todo: null,
+
             }
         },
         mounted() {
@@ -19,6 +20,10 @@
         methods: {
             loadTodo(todo){
                 this.todo = todo;
+            },
+            showSidebar(){
+                console.log('hiding todo');
+                this.todo = null;
             }
         }
     }

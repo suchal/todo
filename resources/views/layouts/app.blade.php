@@ -3,6 +3,8 @@
 <head>
     <title>Suchal Todo</title>
     <link rel="stylesheet" type="text/css" href="{{ url('css/all.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <link rel="stylesheet" type="text/css" href="{{ url('css/app.css') }}">
     <style type="text/css">
         body{

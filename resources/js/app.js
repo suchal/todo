@@ -28,8 +28,16 @@ files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(
  */
  import VueSweetalert2 from 'vue-sweetalert2';
  import 'sweetalert2/dist/sweetalert2.min.css';
+ import VueMq from 'vue-mq'
+
  Vue.use(VueSweetalert2);
- 
+ Vue.use(VueMq, {
+   breakpoints: {
+     sm: 600,
+     md: 1100,
+     lg: Infinity,
+   }
+ }) 
 const app = new Vue({
     el: '#app',
 });
